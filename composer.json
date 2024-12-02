@@ -6,7 +6,7 @@
         "php": ">=7.4",
         "hiz-grup/laravel-scorm": "^4",
         "laravel/framework": ">=8.0",
-        "escolalms/core": "^1",
+        "hiz-grup/escolalms-core": "^1",
         "escolalms/auth": "^0"
     },
     "require-dev": {
