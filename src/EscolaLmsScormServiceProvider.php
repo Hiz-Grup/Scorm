@@ -31,9 +31,33 @@ class EscolaLmsScormServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../resources/views' => resource_path('views/vendor/scorm'),
         ]);
+        $this->loadConfig();
         $this->loadRoutesFrom(__DIR__ . '/routes.php');
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
-        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'scorm');
+        $this->loadTranslationsFrom(__DIR__ . '/../lang', 'scorm');
+    }
+
+    private function loadConfig(): void
+    {
+        $this->publishes([
+            __DIR__ . '/config.php' => config_path('escolalms/core.php'),
+        ], 'escolalms');
+
+        $this->mergeConfigFrom(
+            __DIR__ . '/config.php',
+            'escolalms.core'
+        );
+
+        $config = $this->app->make('config');
+        $config->set('auth.guards', array_merge(
+            [
+                'api' => [
+                    'driver' => 'passport',
+                    'provider' => 'users',
+                ],
+            ],
+            $config->get('auth.guards', [])
+        ));
     }
 
     public function register(): void
