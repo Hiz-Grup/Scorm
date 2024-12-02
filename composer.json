@@ -6,8 +6,7 @@
         "php": ">=7.4",
         "hiz-grup/laravel-scorm": "^4",
         "laravel/framework": ">=8.0",
-        "hiz-grup/escolalms-core": "^1",
-        "escolalms/auth": "^0"
+        "hiz-grup/escolalms-core": "^1"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0",
